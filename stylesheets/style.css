@@ -1,0 +1,347 @@
+:root {
+  --bg-color: #262626;
+  --text-color: #f4f4f4;
+  --bg-color-secondary: #413f42;
+  --bg-check: #26dc51;
+  --delete-color: #f5004f;
+  --edit-color: #32cd32;
+
+  --test-lg: clamp(1.2rem, 5.5vw, 1.5rem);
+  --test-xl: clamp(1.5rem, 8.5vw, 2.5rem);
+  --test-md: clamp(1rem, 4vw, 1.3rem);
+  --test-sm: clamp(0.6rem, 3vw, 1rem);
+
+  --font-family: "Nunito", sans-serif;
+}
+
+/***************** CSS Presets - START ******************/
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+  user-select: none;
+  font-family: var(--font-family);
+  font-weight: 600;
+}
+
+li {
+  list-style: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.todo-chart {
+  width: clamp(170px, 30vw, 220px);
+  height: clamp(170px, 30vw, 220px);
+  margin: 1rem auto;
+  position: relative;
+  z-index: 0;
+}
+
+#myDoughnutChart {
+  width: 100%;
+  height: 100%;
+}
+
+.empty-task-msg.show {
+  width: clamp(170px, 30vw, 220px);
+  height: clamp(170px, 30vw, 220px);
+  background-color: var(--bg-color);
+  position: absolute;
+  z-index: 1;
+
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.empty-task-msg.show p {
+  font-size: var(--test-md);
+}
+
+/***************** CSS Presets - END ******************/
+
+/***************** Dark Mode - START ******************/
+body.light {
+  --bg-color: #f5f7f8;
+  --text-color: #262626;
+  --bg-color-secondary: #e6e6e6;
+  --delete-color: #ff0015;
+  --edit-color: #2bd52b;
+
+  transition: all 0.3s ease;
+}
+
+.switch-mode {
+  width: 2.2rem;
+  height: 2.2rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.3rem;
+  background-color: var(--bg-color-secondary);
+  cursor: pointer;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  z-index: 2;
+}
+
+.switch-mode > .sun,
+.switch-mode > .moon {
+  pointer-events: none;
+}
+
+section {
+  position: relative;
+}
+
+body.light > main > .switch-mode > .sun {
+  display: block;
+}
+body.light > main > .switch-mode > .moon {
+  display: none;
+}
+
+body.light > main > .main-container > .addTodo-container > button {
+  border: 2px solid var(--text-color);
+}
+
+/***************** Dark Mode - END ******************/
+
+/***************** Main Section - START ******************/
+main {
+  width: 100vw;
+  min-height: 100dvh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+}
+
+.main-container {
+  width: min(420px, 90%);
+}
+
+.main-container h1 {
+  margin-bottom: 1rem;
+  text-align: center;
+  text-transform: capitalize;
+  font-size: var(--test-xl);
+  font-weight: 800;
+  cursor: pointer;
+  user-select: none;
+}
+
+.main-container h1:hover {
+  color: var(--edit-color);
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+}
+
+.main-container > .addTodo-container {
+  background-color: var(--bg-color-secondary);
+  padding: 5px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 4px;
+}
+
+.main-container > .addTodo-container > input {
+  padding: 1rem;
+  width: 100%;
+  border-radius: 20px;
+  background-color: var(--bg-color-secondary);
+  color: var(--text-color);
+  font-size: var(--test-md);
+}
+
+.main-container > .addTodo-container > #add-todo {
+  padding: 0.7rem 1.4rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 10px;
+  font-size: var(--test-md);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.main-container .addTodo-container .date-picker {
+  padding: 0.35rem;
+  border-radius: 10px;
+  background-color: transparent;
+  color: var(--text-color);
+  font-size: var(--test-md);
+  cursor: pointer;
+}
+
+/* Todos Container  */
+
+.container-todos {
+  margin-top: 2rem;
+}
+
+.todos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-height: 350px;
+  overflow: auto;
+  scrollbar-width: thin;
+  -ms-overflow-style: scrollbar;
+}
+
+.todos-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.todos-list::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.todos-list > .todo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+@media (max-width: 465px) {
+  .todos-list > .todo {
+    gap: 0.6rem;
+  }
+}
+
+.todos-list > .todo > .todo-checkbox {
+  --size: 22px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  border: 2px solid var(--bg-check);
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.todos-list > .todo > .todo-checkbox.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.todos-list > .todo > .todo-checkbox[data-check="true"] {
+  background-color: var(--bg-check);
+}
+
+.todos-list > .todo > .todo-checkbox[data-check="true"]::before {
+  --check-size: 6.5px;
+  content: "";
+  position: absolute;
+  width: var(--check-size);
+  height: calc(var(--check-size) * 2);
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.todos-list > .todo > .todo-checkbox[data-check="true"] + .todo-text {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.todos-list .todo .todo-deadline {
+  font-size: var(--test-sm);
+  background-color: var(--bg-color-secondary);
+  color: var(--text-color);
+  font-weight: 600;
+  padding: 0.35rem;
+  border-radius: 5px;
+  width: fit-content;
+  flex-shrink: 0;
+  letter-spacing: 0.1px;
+}
+
+.todos-list > .todo > .edit-input {
+  display: none; /* Initially hidden */
+  padding: 0.3rem;
+  border-radius: 5px;
+  border: 1px solid var(--bg-color-secondary);
+  background-color: var(--bg-color-secondary);
+  color: var(--text-color);
+  font-size: var(--test-md);
+  width: calc(70% - 10px); /* Adjust as needed */
+}
+
+.todos-list > .todo > .edit-input:focus {
+  border-color: var(--edit-color); /* Highlight border when focused */
+}
+
+.todos-list > .todo > .todo-text {
+  width: 100%;
+  font-size: var(--test-md);
+  padding: 0.3rem;
+  margin-left: -5.5px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  overflow: auto;
+}
+
+.todos-list > .todo > .delete-todo,
+.todos-list > .todo > .edit-todo {
+  padding: 0.15rem;
+  border-radius: 3px;
+  background: var(--bg-color-secondary);
+  opacity: 1;
+  cursor: pointer;
+  transition: opacity 0.1s ease;
+}
+
+.todos-list > .todo > .edit-todo.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.todos-list > .todo > .delete-todo:hover,
+.todos-list > .todo > .edit-todo:not(.disabled):hover {
+  opacity: 0.9;
+}
+
+.todos-list > .todo > .edit-todo > i {
+  font-size: var(--test-lg);
+  color: var(--edit-color);
+}
+
+.todos-list > .todo > .delete-todo > i {
+  font-size: var(--test-lg);
+  color: var(--delete-color);
+}
+
+/***************** Main Section - END ******************/
+

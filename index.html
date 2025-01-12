@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" media="(prefer-color-scheme: light)" content="#f5f7f8" />
+    <meta name="theme-color" media="(prefer-color-scheme: dark)" content="#262626" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.0/modern-normalize.min.css" integrity="sha512-3axTZ/bKFZH5/qLFTl4U+mDbBDFW+5QO5L7D1HnOhlhJbcNDIVJxoNm6It77g0eUdzfKZlHirayqRC2qJaAOJw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.cdnfonts.com/css/nunito" rel="stylesheet" />
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+    <title>Smart To-Do Webapp</title>
+  </head>
+
+  <body>
+    <main>
+      <div class="switch-mode">
+        <i class="ri-sun-line sun hidden"></i>
+        <i class="ri-contrast-2-line moon"></i>
+      </div>
+
+      <div class="empty-task-msg hidden">
+        <p>No Task for Today</p>
+      </div>
+
+      <section class="main-container">
+        <div class="todo-chart">
+          <canvas id="myDoughnutChart"></canvas>
+        </div>
+        <h1>MyTaskList</h1>
+        <div class="addTodo-container">
+          <label for="todo-input" class="visually-hidden">Task name</label>
+          <input type="text" name="todo" id="todo-input" placeholder="Task name" />
+          <div class="date-picker">
+            <input type="text" id="todoDeadline" placeholder="Select Date and Time" class="hidden" />
+            <button type="button" class="date-picker" id="calendarIcon">
+              <i class="ri-calendar-schedule-line"></i>
+            </button>
+          </div>
+          <button id="add-todo">Add</button>
+        </div>
+
+        <div class="container-todos">
+          <ul class="todos-list">
+          </ul>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
