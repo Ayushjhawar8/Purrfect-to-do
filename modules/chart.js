@@ -181,8 +181,9 @@ export function updateChartData() {
     expiredTodos
   );
 
-  // Easter egg: Celebrate 100% completion
-  if (todoCount > 0 && completedTodos === todoCount) {
+  // Easter egg: Celebrate 100% completion (but not during deletion)
+  const isDeletingTodo = new URLSearchParams(window.location.search).get('deleting') === 'true';
+  if (todoCount > 0 && completedTodos === todoCount && !isDeletingTodo) {
     const overlay = document.createElement('div');
     overlay.style.cssText = `
       position: fixed;
@@ -213,8 +214,11 @@ export function updateChartData() {
       Time for a cat dance party!
     `;
     
-    const cat = document.createElement('iframe');
-    cat.src = 'https://www.youtube.com/embed/C43p8h99Cs0?autoplay=1';
+    const cat = document.createElement('video');
+    cat.src = './stylesheets/CatVid/oo ee a e a Cat Green Screen.mp4';
+    cat.autoplay = true;
+    cat.loop = true;
+    cat.muted = false;
     cat.style.cssText = `
       width: 300px;
       height: 300px;
@@ -222,6 +226,7 @@ export function updateChartData() {
       border-radius: 50%;
       box-shadow: 0 0 20px rgba(255,255,255,0.5);
       animation: bounce 2s infinite;
+      object-fit: cover;
     `;
     
     const style = document.createElement('style');

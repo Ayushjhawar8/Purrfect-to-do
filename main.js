@@ -84,8 +84,11 @@ window.addEventListener("DOMContentLoaded", function () {
         z-index: 9999;
       `;
       
-      const cat = document.createElement('iframe');
-      cat.src = 'https://www.youtube.com/embed/C43p8h99Cs0?autoplay=1';
+      const cat = document.createElement('video');
+      cat.src = './stylesheets/CatVid/oo ee a e a Cat Green Screen.mp4';
+      cat.autoplay = true;
+      cat.loop = true;
+      cat.muted = false;
       cat.style.cssText = `
         width: 300px;
         height: 300px;

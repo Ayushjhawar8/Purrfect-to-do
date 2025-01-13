@@ -8,6 +8,17 @@ import {
 
 // Handle deleting a todo item
 export function handleDelete(todoId, target) {
+  // Add URL parameter to indicate we're deleting
+  const url = new URL(window.location);
+  url.searchParams.set('deleting', 'true');
+  window.history.pushState({}, '', url);
+
+  // Remove the parameter after a short delay
+  setTimeout(() => {
+    url.searchParams.delete('deleting');
+    window.history.pushState({}, '', url);
+  }, 1000);
+
   // If todoId is provided, use it to get the todoElement
   let todoElement;
   if (todoId !== null && todoId !== undefined) {
