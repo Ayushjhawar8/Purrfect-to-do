@@ -27,7 +27,7 @@ git clone https://github.com/Ayushjhawar8/Purrfect-To-Do
 ```
 2. Install the dependencies:
   ```bash
-  npm install
+  cd Purrfect-to-do && npm install
   ```
 3. Start the application:
   ```bash
