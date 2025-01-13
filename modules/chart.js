@@ -215,7 +215,7 @@ export function updateChartData() {
     `;
     
     const cat = document.createElement('video');
-    cat.src = './stylesheets/CatVid/oo ee a e a Cat Green Screen.mp4';
+    cat.src = '/assets/spinning-cat.mp4';
     cat.autoplay = true;
     cat.loop = true;
     cat.muted = false;
